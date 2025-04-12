@@ -95,7 +95,9 @@
         try {
           const msg = JSON.parse(text);
           if (msg.type === 'message') {
-            printLine(`${msg.sendingTime || ''} ${msg.from}: ${msg.content}`);
+            printLine(`>>> ${msg.from} > ${msg.sendingTime}`);
+            printLine(`    ${msg.content}`);
+            printLine(` `);
           }
         } catch (e) {
           console.error("Erreur de parsing côté client :", text);
@@ -118,7 +120,7 @@
         ws.send(JSON.stringify({ type: "setUsername", username }));
 
         printLine(`>>> Bienvenue, ${username} !`);
-        printLine(``);
+        printLine(` `);
 
         usernameForm.style.display = "none";
         inputForm.style.display = "flex";
@@ -132,9 +134,9 @@
 
         const now = new Date();
         const formattedDate = now.toLocaleString('fr-FR', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
+          // day: '2-digit',
+          // month: '2-digit',
+          // year: 'numeric',
           hour: '2-digit',
           minute: '2-digit',
           hour12: false
